@@ -12,8 +12,11 @@ signature: 'v1.eyJzdWIiOiIyMTM2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpY
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const repo = 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues';
-  const tickets = { parser: `${repo}/1`, hint: `${repo}/2`, move: `${repo}/3` };
+  const tickets = {
+    parser: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/1',
+    hint: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/2',
+    move: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/3',
+  };
   const labels = {
     parser: 'Dates read month first',
     hint: 'booking-v3 hint says MM/DD',
