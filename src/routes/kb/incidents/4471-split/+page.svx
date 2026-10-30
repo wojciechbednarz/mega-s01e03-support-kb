@@ -3,6 +3,7 @@ layout: runbook
 title: '#4471 is three problems, not one'
 owner: Wojciech Bednarz
 status: open
+source: help-desk · ticket #4471 · src/lib/data/reports-4471.json (export 2026-10-04)
 reviewed: 2026-10-30
 signature: 'v1.eyJzdWIiOiIyMTM2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzE0ODEsImV4cCI6MTc5MzQ1Nzg4MX0.Zw4C5ZAe3Ioy4aFmp_5vGVC-ZSeUFF7f-P_jXrfpaOc'
 ---
