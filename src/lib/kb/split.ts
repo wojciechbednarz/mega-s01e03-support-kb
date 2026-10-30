@@ -3,7 +3,7 @@
 // which causeOf files under `parser` by tenant. Here it gets its own row.
 import { causeOf, uniqueById, type Cause, type Report, type Tenant } from '#lib/kb/causes';
 
-export type Problem = Cause | 'move';
+export type Problem = Cause | 'move' | 'nodate';
 
 export type ProblemRow = {
   problem: Problem | 'unplaced';
@@ -15,8 +15,10 @@ export type ProblemRow = {
   taggedAs: Record<string, number>;
 };
 
-export function problemOf(r: Report, t: Tenant | undefined, moved: readonly string[]): ProblemRow['problem'] {
+export function problemOf(r: Report, t: Tenant | undefined, moved: readonly string[], noDate: readonly string[] = []): ProblemRow['problem'] {
   if (moved.includes(r.id)) return 'move';
+  // A body that names no date shows no mechanism: it cannot be placed under a cause.
+  if (noDate.includes(r.id)) return 'nodate';
   return causeOf(r, t) ?? 'unplaced';
 }
 
@@ -25,10 +27,11 @@ export function splitTicket(
   ticket: number,
   tenantOf: (r: Report) => Tenant | undefined,
   moved: readonly string[],
+  noDate: readonly string[] = [],
 ): ProblemRow[] {
   const byProblem = new Map<ProblemRow['problem'], Report[]>();
   for (const r of uniqueById(all).filter((r) => r.mergedInto === ticket)) {
-    const p = problemOf(r, tenantOf(r), moved);
+    const p = problemOf(r, tenantOf(r), moved, noDate);
     byProblem.set(p, [...(byProblem.get(p) ?? []), r]);
   }
   return [...byProblem.entries()]

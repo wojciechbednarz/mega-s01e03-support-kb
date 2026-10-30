@@ -11,7 +11,7 @@
   // Where each problem in this ticket is tracked now (tickets.json): a pointer, never a copied status.
   const filed = $derived((tickets as Record<string, Record<string, string>>)[String(ticket)] ?? {});
   const merged = $derived(uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket));
-  const groups = $derived(splitTicket(merged, ticket, tenantOf, notes.oneDayMove));
+  const groups = $derived(splitTicket(merged, ticket, tenantOf, notes.oneDayMove, notes.noDate));
   const tags = (g: { taggedAs: Record<string, number> }) =>
     Object.entries(g.taggedAs)
       .sort((a, b) => b[1] - a[1])
@@ -34,13 +34,13 @@
   <tbody>
     {#each groups as g (g.problem)}
       {@const url = filedAs(g)}
-      <tr class:wrong={!url}>
+      <tr class:wrong={!url && g.problem !== 'nodate'}>
         <td><code>{g.problem}</code></td>
         <td>{g.reports.length}</td>
         <td class="tags">{tags(g)}</td>
         <td>{g.tenants}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
-        <td>{#if url}<a href={url}>{issueNo(url)}</a>{:else}no ticket of its own{/if}</td>
+        <td>{#if url}<a href={url}>{issueNo(url)}</a>{:else}{g.problem === 'nodate' ? 'no ticket: no date in the report' : 'no ticket of its own'}{/if}</td>
       </tr>
     {/each}
   </tbody>
