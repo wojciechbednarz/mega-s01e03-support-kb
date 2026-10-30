@@ -1,0 +1,61 @@
+---
+layout: runbook
+title: '#4471 is three problems, not one'
+owner: Wojciech Bednarz
+status: open
+reviewed: 2026-10-30
+signature: Wojciech Bednarz
+---
+
+<script>
+  import SplitTable from '#lib/kb/SplitTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const repo = 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues';
+  const tickets = { parser: `${repo}/1`, hint: `${repo}/2`, move: `${repo}/3` };
+  const labels = {
+    parser: 'Dates read month first',
+    hint: 'booking-v3 hint says MM/DD',
+    move: 'Booking moves by one day',
+  };
+</script>
+
+The [#4471 page](/kb/incidents/4471) says the reports are one issue with one fix queued. When you read
+the reports, three problems show up. The queued parser fix closes only the first one.
+
+<Callout kind="warn">
+#4471 is not one issue. Each problem below has its own ticket and its own report count.
+Do not close a ticket because the parser fix shipped.
+</Callout>
+
+## What #4471 holds
+
+<SplitTable ticket={4471} {tickets} {labels} />
+
+## How each report was placed
+
+- **Dates read month first** (`parser`): the shared parser reads every date month first, and every
+  tenant on file writes the day first. 7 April becomes 4 July. This covers app, email and booking-v2 forms.
+- **booking-v3 hint says MM/DD** (`hint`): booking-v3 prints `MM/DD/YYYY` under its date field.
+  People type the month first, and the form reads the date day first. These are reports through the
+  form from tenants on booking-v3. The parser fix does not touch this.
+- **Booking moves by one day** (`move`): the date is not swapped. It moves by one day: Lisbon gets
+  Tuesday while Toronto gets Monday, and only June is off. That points at time zones or daylight
+  saving. These are the reports the desk listed in `desk-notes.json`. The #4471 table files them
+  under `parser` because of their tenant, and that hides them.
+
+## What the old count got wrong
+
+- The export pages overlap, so some rows appear twice. Count unique report ids, not rows.
+- The intake tag is a guess from the reporter's browser. It disagrees with the tenant's real problem
+  in both directions, so a count by tag is wrong. Count by tenant and channel.
+- Merging by subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) put three bugs in
+  one ticket, because people describe all three with the same subjects.
+
+## Lessons
+
+- Before you merge reports, ask which mechanism broke the date, not which words the reporter used.
+- A note the desk files next to the data (`desk-notes.json`) is a finding. Give it a row, not a footnote.
+
+<RenderStamp {signature} />
