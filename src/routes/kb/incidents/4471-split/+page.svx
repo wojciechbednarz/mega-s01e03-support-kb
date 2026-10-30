@@ -13,9 +13,9 @@ signature: 'v1.eyJzdWIiOiIyMTM2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpY
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
   const tickets = {
-    parser: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/1',
-    hint: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/2',
-    move: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/3',
+    parser: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/4',
+    hint: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/5',
+    move: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/6',
   };
   const labels = {
     parser: 'Dates read month first',
