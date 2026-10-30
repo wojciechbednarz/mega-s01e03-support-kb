@@ -8,23 +8,12 @@ signature: 'v1.eyJzdWIiOiIyMTM2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpY
 ---
 
 <script>
-  import SplitTable from '#lib/kb/SplitTable.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
-
-  const tickets = {
-    parser: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/4',
-    hint: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/5',
-    move: 'https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/6',
-  };
-  const labels = {
-    parser: 'Dates read month first',
-    hint: 'booking-v3 hint says MM/DD',
-    move: 'Booking moves by one day',
-  };
 </script>
 
-The [#4471 page](/kb/incidents/4471) says the reports are one issue with one fix queued. When you read
+Until 30 October the [#4471 page](/kb/incidents/4471) said the reports were one issue with one fix queued. When you read
 the reports, three problems show up. The queued parser fix closes only the first one.
 
 <Callout kind="warn">
@@ -34,7 +23,9 @@ Do not close a ticket because the parser fix shipped.
 
 ## What #4471 holds
 
-<SplitTable ticket={4471} {tickets} {labels} />
+<CauseTable ticket={4471} />
+
+Tickets: [#4 parser](https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/4) · [#5 hint](https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/5) · [#6 one-day move](https://github.com/wojciechbednarz/mega-s01e03-support-kb/issues/6). Where each ticket lives is kept in `src/lib/data/tickets.json`; its status lives on the ticket, not here.
 
 ## How each report was placed
 
@@ -45,8 +36,8 @@ Do not close a ticket because the parser fix shipped.
   form from tenants on booking-v3. The parser fix does not touch this.
 - **Booking moves by one day** (`move`): the date is not swapped. It moves by one day: Lisbon gets
   Tuesday while Toronto gets Monday, and only June is off. That points at time zones or daylight
-  saving. These are the reports the desk listed in `desk-notes.json`. The #4471 table files them
-  under `parser` because of their tenant, and that hides them.
+  saving. These are the reports the desk listed in `desk-notes.json`. The old #4471 table filed them
+  under `parser` because of their tenant, and that hid them.
 
 ## What the old count got wrong
 
@@ -54,7 +45,7 @@ Do not close a ticket because the parser fix shipped.
 - The intake tag is a guess from the reporter's browser. It disagrees with the tenant's real problem
   in both directions, so a count by tag is wrong. Count by tenant and channel.
 - Merging by subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) put three bugs in
-  one ticket, because people describe all three with the same subjects.
+  one ticket. [Decision 0002](/kb/decisions/0002-dedupe-by-cause) replaces it, because people describe all three with the same subjects.
 
 ## Lessons
 

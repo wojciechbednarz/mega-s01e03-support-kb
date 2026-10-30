@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link href="../../_app/immutable/entry/start.C3K-v13x.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BFKUqgza.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BHI4G_tY.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/B7yEsYtO.js" rel="modulepreload">
+		<link href="../../_app/immutable/entry/app.fXRAoDP2.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/D5pEtmhg.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/nJQcIPte.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/WzAjyw7j.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/CY1cZ4VT.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/0.DfVrT3oF.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/DqvFVc28.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/4.KG7tTsU_.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/DulpT_t9.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BWNaKrEA.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/HziifFYH.js" rel="modulepreload">
+		<!--e2jw2j--><!----><title>0002 · Duplicates share a cause, not a subject line · support kb</title>
+		<link href="../../_app/immutable/assets/runbook.BhhgOc_n.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/RenderStamp.CMZ6TBbc.css" rel="stylesheet"></head>
+<body><div style="display: contents"><!--[--><!--[0--><!--[--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">0002 · Duplicates share a cause, not a subject line</h1> <p class="meta svelte-e2jw2j"><span>owner <b>Wojciech Bednarz</b></span> <span class="status accepted svelte-e2jw2j">accepted</span> <span class="svelte-e2jw2j">reviewed 2026-10-30 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p><strong>Date:</strong> 30 October 2026 · <strong>Deciders:</strong> support desk · <strong>Replaces:</strong> <a href="/kb/decisions/0001-dedupe-by-subject">0001</a></p> <h2>Context</h2> <p>Decision 0001 merged reports whose subject lines matched. #4471 shows what that costs: 412 reports with
+12 different subjects ended up in one ticket marked known, and they hold three problems with three fixes
+(<a href="/kb/incidents/4471-split">#4471 is three problems, not one</a>). People describe different bugs in the same words.</p> <h2>Decision</h2> <p>Two reports are the same issue when they have the same <strong>cause</strong>, worked out from the tenant (its locale and
+booking form) and the channel, as <code>causeOf</code> in <code>src/lib/kb/causes.ts</code> does. A report whose body shows a
+different mechanism (a one-day move, not a swap) goes to its own ticket even when its tenant points elsewhere.
+The subject line and the intake tag are hints, never the key.</p> <p>Each ticket a big ticket is split into is listed in <code>src/lib/data/tickets.json</code>, so the incident page
+shows where every cause is tracked.</p> <h2>Consequences</h2> <ul><li>Triage reads the tenant and the channel, not just the subject. Slower on an incident morning.</li> <li>A queued fix closes only its own cause’s ticket. The rest stay open.</li> <li>0001 stays as written; this record replaces it.</li></ul> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-VMP4-T6PE</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_17uu3i6 = {
+						base: new URL("../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.C3K-v13x.js"),
+						import("../../_app/immutable/entry/app.fXRAoDP2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div></body></html>

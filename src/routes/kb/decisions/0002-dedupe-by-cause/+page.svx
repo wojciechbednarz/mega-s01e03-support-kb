@@ -1,0 +1,39 @@
+---
+layout: runbook
+title: '0002 · Duplicates share a cause, not a subject line'
+owner: Wojciech Bednarz
+status: accepted
+reviewed: 2026-10-30
+supersedes: 0001-dedupe-by-subject
+signature: 'v1.eyJzdWIiOiIyMTM2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzE0ODEsImV4cCI6MTc5MzQ1Nzg4MX0.Zw4C5ZAe3Ioy4aFmp_5vGVC-ZSeUFF7f-P_jXrfpaOc'
+---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+**Date:** 30 October 2026 · **Deciders:** support desk · **Replaces:** [0001](/kb/decisions/0001-dedupe-by-subject)
+
+## Context
+
+Decision 0001 merged reports whose subject lines matched. #4471 shows what that costs: 412 reports with
+12 different subjects ended up in one ticket marked known, and they hold three problems with three fixes
+([#4471 is three problems, not one](/kb/incidents/4471-split)). People describe different bugs in the same words.
+
+## Decision
+
+Two reports are the same issue when they have the same **cause**, worked out from the tenant (its locale and
+booking form) and the channel, as `causeOf` in `src/lib/kb/causes.ts` does. A report whose body shows a
+different mechanism (a one-day move, not a swap) goes to its own ticket even when its tenant points elsewhere.
+The subject line and the intake tag are hints, never the key.
+
+Each ticket a big ticket is split into is listed in `src/lib/data/tickets.json`, so the incident page
+shows where every cause is tracked.
+
+## Consequences
+
+- Triage reads the tenant and the channel, not just the subject. Slower on an incident morning.
+- A queued fix closes only its own cause's ticket. The rest stay open.
+- 0001 stays as written; this record replaces it.
+
+<RenderStamp {signature} />

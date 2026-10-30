@@ -11,6 +11,13 @@ reviewed: 2024-06-11
   import Callout from '#lib/kb/Callout.svelte';
 </script>
 
+<Callout kind="warn">
+
+The subject rule below is replaced by [decision 0002](/kb/decisions/0002-dedupe-by-cause): merge by cause.
+#4471 is what the subject rule produces: [three problems in one ticket](/kb/incidents/4471-split).
+
+</Callout>
+
 A busy morning brings hundreds of reports about the same thing. We keep one ticket per issue
 and merge every duplicate into it, so engineering sees one thread with a count.
 
