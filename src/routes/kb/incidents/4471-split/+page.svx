@@ -4,7 +4,7 @@ title: '#4471 is three problems, not one'
 owner: Wojciech Bednarz
 status: open
 reviewed: 2026-10-30
-signature: Wojciech Bednarz
+signature: 'v1.eyJzdWIiOiIyMTM2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzE0ODEsImV4cCI6MTc5MzQ1Nzg4MX0.Zw4C5ZAe3Ioy4aFmp_5vGVC-ZSeUFF7f-P_jXrfpaOc'
 ---
 
 <script>
